@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Sophie, Park Se Hyun - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Sophie, Park Se Hyun - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-humandex"><a class="link" href="#project-humandex">Project: humanDEX</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>humanDEX is an address book specially made for insurance agents who need an efficient application for managing their long list of clients and colleagues.</p>
+</div>
+<div class="paragraph">
+<p>This project is heavily based on AddressBook - Level 4. AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B1/main/blob/master/collated/main/sofarsophie.md">Functional Code</a>] [<a href="https://github.com/CS2103AUG2017-F11-B1/main/blob/master/collated/test/sofarsophie.md">Test Code</a>] [<a href="https://github.com/CS2103AUG2017-F11-B1/main/blob/master/collated/unused/sofarsophie.md">Unused Code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-enhance-code-findcommand-code"><a class="link" href="#enhancement-added-enhance-code-findcommand-code">Enhancement Added: Enhance <code>FindCommand</code></a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-2-locating-persons-by-other-fields-code-find-code"><a class="link" href="#since-v1-2-locating-persons-by-other-fields-code-find-code">[Since v1.2] Locating persons by other fields: <code>find</code></a></h3>
+<div class="paragraph">
+<p>Finds persons whose field matches any of the given fields.
+Format: <code>find prefix/INPUT [n/NAME]&#8230;&#8203; [p/PHONE]&#8230;&#8203; [e/EMAIL]&#8230;&#8203; [a/ADDRESS]&#8230;&#8203; [g/GROUP]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>Email@Email.com</code> will match <code>email@email.com</code></p>
+</li>
+<li>
+<p>Any field will be searched.</p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>find n\Hans n\Bo</code> will match <code>find n\Bo n\Hans</code></p>
+</li>
+<li>
+<p>For name, phone, and address, partial words will also be matched.
+e.g. <code>find p/9004</code> will match anyone whose phone number contains <code>9004</code>.</p>
+</li>
+<li>
+<p>For phone and email, the given input must also be in the correct form of the corresponding field.
+e.g. <code>find e/gmail</code> is invalid. <code>find e_lee@nus.edu.sg</code> is valid.
+e.g. <code>find p/9</code> is invalid. Use the <code>sort</code> command instead if you want to categorize contacts by the starting digit of a phone number.</p>
+</li>
+<li>
+<p>Persons matching at least one field will be returned (i.e. <code>OR</code> search).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find n/John</code><br>
+Returns <code>Johnathan Kim</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find t/colleagues t/friends</code><br>
+Returns any person who has a <code>colleague</code> tag or a <code>friends</code> tag.</p>
+</li>
+<li>
+<p><code>find t/shopkeeper g/Retail</code>
+Returns any persons who has the <code>shopkeeper</code> tag or is in the <code>Retail</code> group.</p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>The <code>find</code> command allows the user to find the client or colleague that matches the information that they have. So the user
+can quickly locate a contact with little information. For instance, a user may have an unknown phone number on their phone.
+The user can use the <code>find</code> command to find whose number it is. Also, a user may wish to find out how many of their clients
+live in a specific neighbourhood, to plan their door-to-door selling dates.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find"><a class="link" href="#find">Find</a></h3>
+<div class="paragraph">
+<p>The <code>find</code> command was enhanced to allow a more rigorous search. The new find command allows users to search for Persons in the humanDEX using fields such as Name, Email, Phone, Address, Group and Tag.
+It supports partial search and users are required to input fields using prefixes.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>The enhanced <code>find</code> command was implemented by first, modifying the parsing mechanism in <code>FindCommandParser</code>. After checking whether any of the prefixes exist in the <code>argMultiMap</code>, the parser uses four methods to parse each field. An example of a Parser method is as follows:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> Optional&lt;<span class="predefined-type">List</span>&lt;<span class="predefined-type">Name</span>&gt;&gt; parseNamesForSearch(<span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; names) <span class="directive">throws</span> IllegalValueException {
+    <span class="keyword">assert</span> names != <span class="predefined-constant">null</span>;
+
+    <span class="keyword">if</span> (names.isEmpty()) {
+        <span class="keyword">return</span> Optional.empty();
+    }
+    <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; nameList = names.size() == <span class="integer">1</span> &amp;&amp; names.contains(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>) ? <span class="predefined-type">Collections</span>.emptyList() : names;
+    <span class="keyword">return</span> Optional.of(ParserUtil.parseNames(nameList));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method above returns an Optional so that when a user does not input any name fields to search, the method still returns.<br></p>
+</div>
+<div class="paragraph">
+<p>These parsed arguments are delivered to the <code>PersonContainsKeywordsPredicate</code> (<code>Predicate</code>) by creating a <code>FindFields</code> object that is located within the <code>PersonContainsKeywordsPredicate</code> class. For each searchable field, the <code>FindFields</code> class uses a list to store the search inputs. For instance, keywords that are a <code>Name</code> are saved in a list like below.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">Name</span>&gt; nameKeywords;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The class also provides one setter and two getter methods for each of the fields. The former getter method returns a Optional, while the latter returns a Stream. The latter was implemented so that <code>getNameKeywords().map(List::stream).orElseGet(Stream::empty)</code> does not have to be repeated multiple times. Below is an example of the two getter methods for <code>Name</code>:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Optional&lt;<span class="predefined-type">List</span>&lt;<span class="predefined-type">Name</span>&gt;&gt; getNameKeywords() {
+    <span class="keyword">return</span> Optional.ofNullable(nameKeywords);
+}
+
+<span class="directive">public</span> Stream&lt;<span class="predefined-type">Name</span>&gt; getNameKeywordsStream() {
+    <span class="keyword">return</span> <span class="local-variable">this</span>.getNameKeywords().map(<span class="predefined-type">List</span>::stream).orElseGet(Stream::empty);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By having a method that returns a stream, the stream is able to call the <code>anyMatch()</code> method to check if the stream contains any of the given `Person`s fields.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">(findFields.getNameKeywordsStream().anyMatch(keyword
+-&gt;StringUtil.containsPartialTextIgnoreCase(person.getName().fullName,keyword.fullName)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful parsing, <code>FindCommand</code> is executed as per other commands. The <code>find</code> command now returns partial matches.<br></p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows how the enhanced <code>find</code> command works.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDForFind.png" alt="SDForFind" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Parsing of emails as parameters<br>
+<strong>Alternative 1 (current choice):</strong> Parses and creates email classes with the current validation method.<br>
+<strong>Pros:</strong> Quick to implement, consistent validation throughout.<br>
+<strong>Cons:</strong> Does not allow users to search using email suffixes (e.g., <code>find e/@comp.nus.edu.sg</code>).<br>
+<strong>Alternative 2:</strong> Implement an overloaded constructor for <code>Email</code> that surpasses validation.<br>
+<strong>Pros:</strong> Will allow more flexible uses for users.<br>
+<strong>Cons:</strong> The team needs to agree on whether implementing an overloaded constructor is useful in terms of the entire software. Not having enough uses for the constructor may call for other solutions.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="improvements"><a class="link" href="#improvements">Improvements</a></h4>
+<div class="paragraph">
+<p><strong>Improvement:</strong> Create new constructor for <code>Email</code> and <code>Phone</code> so that any type of input can be processed without a validation warning. For each constructor, provide a boolean <code>needsValidation</code> value to flag whether the <code>value</code> must be validated. This can be a quick fix to enhancing the <code>find</code> method so that any input can be used as a <code>FindField</code> element,
+ without changing too much of the code.<br></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-add-command-code-sort-code"><a class="link" href="#enhancement-added-add-command-code-sort-code">Enhancement Added: Add command <code>sort</code></a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-3-since-v1-4-sorts-and-lists-all-persons-using-fields-code-sort-code"><a class="link" href="#since-v1-3-since-v1-4-sorts-and-lists-all-persons-using-fields-code-sort-code">[Since v1.3] [Since v1.4] Sorts and lists all persons using fields : <code>sort</code></a></h3>
+<div class="paragraph">
+<p>Sorts the most recent persons listing by the given parameter in lexicographic order.<br>
+Format: <code>sort [prefix]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+prefix includes [n/] [p/] [e/] [a/] [g/]
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Sorts list based on one given parameter from: Name, Phone, Email, Address, or Group.</p>
+</li>
+<li>
+<p>If no parameter is given, sorts list by the contacts' names in alphabetical order.</p>
+</li>
+<li>
+<p>Cannot sort using multiple parameters.</p>
+</li>
+<li>
+<p>Cannot sort an empty contact list.</p>
+</li>
+<li>
+<p>A sorted contacts list can be unsorted by using the command <code>undo</code>.</p>
+</li>
+<li>
+<p>Sort can also be done by using the filter dropdown above the persons list, as follows:</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/sort-filter-controls.png" alt="sort filter controls" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort p/</code>
+Sorts the most recent persons listing by phone number.</p>
+</li>
+<li>
+<p><code>find a/jurong</code> + <code>sort</code>
+Finds all people with address containing 'jurong' and sorts by name.</p>
+</li>
+<li>
+<p><code>sort</code>, <code>sort n/</code>
+Sorts the most recent persons listing by name.</p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>The target user of this application are typically likely to have many contacts on their address book. The sort command is essential
+for the user to neatly organize their list of contacts based on any field. For instance, an insurance seller using this address book may
+wish to see how many of their clients are stores or organizations. The user can simply sort their address book by phone number, which will
+place all the contacts with number starting with 6 at the top.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort"><a class="link" href="#sort">Sort</a></h3>
+<div class="paragraph">
+<p>The <code>sort</code> command allows users to sort their contacts by any given field, with the exception of <code>Tag</code>. It is an undoable command.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<div class="paragraph">
+<p>The following sequence diagram represents the sort command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDForSort.png" alt="SDForSort" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>In the sequence diagram, the sequence after the <code>Model</code> calls <code>sortPersonsList(Prefix prefix)</code> are omitted. The <code>Model</code> executes <code>sortFilteredPersonList</code>, which sorts the <code>internalList</code> using a custom comparator. A <code>ReadOnlyPersonComparator</code> has been defined with an overridden <code>compare</code> method, that holds a static <code>Prefix</code> variable to compare two <code>ReadOnlyPerson</code> objects by. The comparator returns an appropriate integer after comparing two <code>ReadOnlyPerson</code> objects based on the field identified by the given <code>prefix</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The implementation also involves a UI element, implemented using Java FX. A dropdown UI element is more intuitive for users who prefer GUI controls over CLI controls. A <code>SortControls</code> stack plane is placed inside the <code>PersonList</code> vertical box. When a user selects a sort parameter from the dropdown, it triggers the logic to execute a command with the relevant parameter.<br></p>
+</div>
+<div class="paragraph">
+<p>A <code>ComboBox</code> was used to implement the dropdown. CSS codes were written for the dropdown so that the dropdown and the list cells change shade upon <code>hover</code>. This improves the user experience by explicitly showing the system response.<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Command type of <code>SortCommand</code><br>
+<strong>Alternative 1 (current choice):</strong> Implement <code>SortCommand</code> as an undoable command<br>
+<strong>Pros:</strong> Better user experience, as users can undo any sort commands executed by mistake.<br>
+<strong>Cons:</strong> Difficulty in implementation when the <code>SortCommand</code> is expanded to support sorting by multiple parameters.<br>
+<strong>Alternative 2:</strong> Implement <code>SortCommand</code> as an ordinary command<br>
+<strong>Pros:</strong> Easier to implement.<br>
+<strong>Cons:</strong> When sorting by multiple parameters is enabled, users may wish to revert their address book to the original state after revising the sorted version. Thus not being able to undo a sort will lead to low usability.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Command word of <code>SortCommand</code><br>
+<strong>Alternative 1 (current choice):</strong> Use the prefixes (e.g., n/) for the sort command word.<br>
+<strong>Pros:</strong> Easy for users, as other commands use the prefixes for distinguishing between fields.<br>
+<strong>Cons:</strong> Some users may feel it not so intuitive. Difficult to standardize.<br>
+<strong>Alternative 3:</strong> Use the name of the field (e.g., name) for the sort command word.<br>
+<strong>Pros:</strong> Can be more intuitive. Matching each prefix to the field name can be useful in other parts of the code as well (e.g., returning the <code>name</code> comparator for the <code>n/</code> prefix), although implementing this may be an overkill.<br>
+<strong>Cons:</strong> Inconsistent with the other commands.<br>
+<strong>Mitigation:</strong> Enable a UI element for the same command, so that users who feel it unintuitive to use the prefixes as the command word can use this alternative.</p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h3>
+<div class="sect3">
+<h4 id="acceptance-testing"><a class="link" href="#acceptance-testing">Acceptance Testing</a></h4>
+<div class="paragraph">
+<p>Helped catch bugs and give suggestions for team [OneBook](<a href="https://github.com/CS2103AUG2017-T17-B4/main" class="bare">https://github.com/CS2103AUG2017-T17-B4/main</a>): issues [#88](<a href="https://github.com/CS2103AUG2017-T17-B4/main/issues/88" class="bare">https://github.com/CS2103AUG2017-T17-B4/main/issues/88</a>), [#87](<a href="https://github.com/CS2103AUG2017-T17-B4/main/issues/87" class="bare">https://github.com/CS2103AUG2017-T17-B4/main/issues/87</a>), [#86](<a href="https://github.com/CS2103AUG2017-T17-B4/main/issues/86" class="bare">https://github.com/CS2103AUG2017-T17-B4/main/issues/86</a>), [#83](<a href="https://github.com/CS2103AUG2017-T17-B4/main/issues/83" class="bare">https://github.com/CS2103AUG2017-T17-B4/main/issues/83</a>).
+Wrote one-liner scenarios for Final Demo to suit demo for target users</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-13 07:46:28 +00:00
+</div>
+</div>
+</body>
+</html>

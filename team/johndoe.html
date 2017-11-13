@@ -48,7 +48,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code>, <code>clear</code>, <code>find</code> and <code>sort</code>).</p>
 </div>
 </td>
 </tr>
@@ -61,12 +61,12 @@ Format: <code>undo</code></p>
 <ul>
 <li>
 <p><code>delete 1</code><br>
-<code>list</code><br>
+<code>list all</code><br>
 <code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
 </li>
 <li>
 <p><code>select 1</code><br>
-<code>list</code><br>
+<code>list all</code><br>
 <code>undo</code><br>
 The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
 </li>
@@ -360,7 +360,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-21 15:57:58 +00:00
+Last updated 2017-11-13 07:46:28 +00:00
 </div>
 </div>
 </body>

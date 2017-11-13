@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Law Keng Ying - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Law Keng Ying - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">Project: AddressBook - Level 4</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B1/main/blob/master/collated/main/kengying.md">Functional Code</a>] [<a href="https://github.com/CS2103AUG2017-F11-B1/main/blob/master/collated/test/kengying.md">Test Code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-code-group-code"><a class="link" href="#enhancement-added-code-group-code">Enhancement Added: <code>Group</code></a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">Adding a person: <code>add</code></a></h3>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME  g/GROUP [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203; [c/CUSTOMFIEILD_KEY:CUSTOMFIELD_VALUE]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags or custom fields (including 0)
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can be saved with just name and group
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/Health c/School:NUS c/Company:Google</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 g/Life t/criminal</code></p>
+</li>
+<li>
+<p><code>add n/Henry Harry g/Savings</code></p>
+</li>
+<li>
+<p><code>add n/Tim Tom p/12356923 a/Timmy street g/Holiday</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>User will be able to add group to their different clients. The difference between <code>tag</code> and <code>group</code> is that, a user must have a group when being added while tag is optional.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="group"><a class="link" href="#group">Group</a></h3>
+<div class="paragraph">
+<p>The <code>add</code> command allows user to add group to a person.
+Every person will need to have a group.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of Group<br>
+<strong>Alternative 1 (current choice):</strong> Use the current <code>add</code> command for adding of groups.<br>
+<strong>Pros:</strong> Easier to be done.<br>
+<strong>Cons:</strong> Will not be able to create an empty group.<br>
+<strong>Alternative 2:</strong> Create another command for managing groups. <br>
+<strong>Pros:</strong> More distinct differentiation of <a href="#group">group</a> and <a href="#tag">tag</a>.<br>
+<strong>Cons:</strong> Time consuming.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-code-list-code"><a class="link" href="#enhancement-added-code-list-code">Enhancement Added: <code>List</code></a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-3-listing-all-persons-code-list-code"><a class="link" href="#since-v1-3-listing-all-persons-code-list-code">[Since v1.3] Listing all persons : <code>list</code></a></h3>
+<div class="paragraph">
+<p>list all, shows all person in humanDEX<br>
+list tags, shows all tags in humanDEX<br>
+list groups, shows all groups in humanDEX<br>
+Format: <code>list [SEARCH_TERM]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list all</code></p>
+</li>
+<li>
+<p><code>list tags</code></p>
+</li>
+<li>
+<p><code>list groups</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>As the amount of contacts increase, there will be too many tags and groups to keep track. <code>List</code> tags/groups, will be able to show the available tags/groups that are currently being in used.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list"><a class="link" href="#list">List</a></h3>
+<div class="paragraph">
+<p>The <code>list</code> command allows the user to list the contacts by tag(s).
+The following sequence diagram shows how the <code>list</code> operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforListPerson.png" alt="SDforListPerson" width="691">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.1.1 : <code>list</code> Diagram</em></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>ListCommandParser</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a class to parse command from <code>AddressBookParser</code><br>
+<strong>Pros:</strong> A better usage for listing<br>
+<strong>Cons:</strong> New class will be added in, need to add more test cases.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote the test script and some test data (Pull requests <a href="https://github.com/CS2103AUG2017-F11-B1/main/pull/107">#107</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-13 07:46:28 +00:00
+</div>
+</div>
+</body>
+</html>

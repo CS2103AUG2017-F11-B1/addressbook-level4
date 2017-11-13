@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Sim Yan Yu - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Sim Yan Yu - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">Project: AddressBook - Level 4</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B1/main/blob/master/collated/main/syy94.md">Functional code</a>]
+ [<a href="https://github.com/CS2103AUG2017-F11-B1/main/tree/master/collated/test">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-edit-individual-tags"><a class="link" href="#enhancement-added-edit-individual-tags">Enhancement Added: Edit Individual Tags</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">Editing a person : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing person in the address book.<br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [-t/TAG]&#8230;&#8203; [+t/TAG]&#8230;&#8203; [clearTag/] [c/CUSTOMFIEILD_KEY:CUSTOMFIELD_VALUE]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing custom fields, the existing custom fields of the person will be removed i.e adding of custom fields is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s custom fields by typing <code>c/</code> without specifying any custom fields after it.</p>
+</li>
+<li>
+<p>When editing tags, <code>clearTag/</code> takes precedence followed by <code>+t/</code> and then <code>-t/</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower clearTag/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+<li>
+<p><code>edit 3 c/School:NUS</code><br>
+Clears all existing custom fields and adds the custom field <code>School:NUS</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>By implementing this feature, the user can just simply edit their tags by just using the
+prefixes <code>+t/</code>, <code>-t/</code> and <code>clearTag/</code>, without the need of a re-entering the tags the user
+wants to keep. This is most beneficial when a person have multiple tags.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-3-edit-individual-tags"><a class="link" href="#since-v1-3-edit-individual-tags">[Since v1.3] Edit (Individual Tags)</a></h3>
+<div class="sect3">
+<h4 id="method"><a class="link" href="#method">Method</a></h4>
+<div class="paragraph">
+<p>With the additional 3 prefixes, input from the prefixes <code>+t/</code> and <code>-t/</code> are stored into sets <code>toAdd</code> and <code>toRemove</code> in the
+<code>EditPersonDescriptor</code> class. If the <code>clearTag/</code> prefix exists, the <code>EditPersonDescriptor</code> class will also take note of it.</p>
+</div>
+<div class="paragraph">
+<p>During the execute() method, a new <code>Set&lt;Tags&gt;</code> will be created and if <code>clearTag/</code> does not exist, the new <code>Set&lt;Tags&gt;</code> will then
+add all existing tags from the <code>personToEdit</code>. Then it will continue to add all the <code>Tags</code> in the <code>toAdd</code> and then remove
+all the tags in the Set <code>toRemove</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tag-precedence"><a class="link" href="#tag-precedence">Tag Precedence</a></h4>
+<div class="paragraph">
+<p>At the point of development the precedence of <code>clearTags</code>, <code>+t/</code> (add tag) and then <code>-t/</code> (remove tag) is used.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Argument:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>+t/</code> &gt; <code>-t/</code> &gt; <code>clearTag/</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>When the user uses all 3 prefixes, <code>+t/</code> and <code>-t/</code> will be made redundant and the user have wasted time typing values for <code>+t/</code> and <code>-t/</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If <code>clearTag/</code> &gt; <code>-t/</code> &gt; <code>+t/</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>When the user uses all 3 prefixes, with <code>+t/</code> and <code>-t/</code> having the same values, <code>-t/</code> will not be ignored and <code>+t/</code> and <code>-t/</code> will cancel each other out.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-custom-fields"><a class="link" href="#enhancement-added-custom-fields">Enhancement Added: Custom Fields</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code-2"><a class="link" href="#editing-a-person-code-edit-code-2">Editing a person : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing person in the address book.<br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [-t/TAG]&#8230;&#8203; [+t/TAG]&#8230;&#8203; [clearTag/] [c/CUSTOMFIEILD_KEY:CUSTOMFIELD_VALUE]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing custom fields, the existing custom fields of the person will be removed i.e adding of custom fields is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s custom fields by typing <code>c/</code> without specifying any custom fields after it.</p>
+</li>
+<li>
+<p>When editing tags, <code>clearTag/</code> takes precedence followed by <code>+t/</code> and then <code>-t/</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower clearTag/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+<li>
+<p><code>edit 3 c/School:NUS</code><br>
+Clears all existing custom fields and adds the custom field <code>School:NUS</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>By implementing this feature, the user freely add additional information about of the persons stored in humanDEX. This
+additional information can be found in the PersonDetailsPanel above the Browser.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-3-custom-fields"><a class="link" href="#since-v1-3-custom-fields">[Since v1.3] Custom Fields</a></h3>
+<div class="paragraph">
+<p>The ability for the users to define their own custom fields is implemented to give the users more control over the data they are keeping about their contacts.
+The main purpose of this feature is idealised to allow users to store data that does not seem to fit the use of tags and groups.
+Some examples of fields could be birthdays, the company the contact works under etc.</p>
+</div>
+<div class="sect3">
+<h4 id="variables"><a class="link" href="#variables">Variables</a></h4>
+<div class="paragraph">
+<p>The CustomField class holds 2 variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>key : name of the field</p>
+</li>
+<li>
+<p>value : value of the field</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="paragraph">
+<p>During development the use of Hashmap was considered as a way to store these fields, limiting the keys to be unique. However, the user may have a need to store 2 different values under a same key.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>For Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HashMap Method:</p>
+<div class="literalblock">
+<div class="content">
+<pre>Phone:98765432
+Phone1:84434663</pre>
+</div>
+</div>
+</li>
+<li>
+<p>HashSet Method:</p>
+<div class="literalblock">
+<div class="content">
+<pre>Phone:98765432
+Phone:84434663</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From a UI perspective, the HashSet method may look more aethestically pleasing as compared to the HashMap method.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, HashSet is used as it is able to allow the user to fully choose which display method they prefer giving them more flexibility.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<div class="paragraph">
+<p>The CustomField class was developed first and added to Person class. Then the necessary classes are created and developed such that it fits into the existing code. The add and edit command are then updated to support this new feature and finally, test cases are updated to check that this feature have been integrated seamlessly with the existing code.</p>
+</div>
+<div class="paragraph">
+<p>Other than this, CustomField is structured almost the same as <code>Name</code> and <code>Tags</code> attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="improvements"><a class="link" href="#improvements">Improvements</a></h4>
+<div class="paragraph">
+<p>If there is a need to collate values with similar keys, a <code>HashMap&lt;String, Set&lt;String&gt;&gt;</code> can be used, where <code>String</code>
+represents the key and the <code>Set&lt;String&gt;</code> will be the values.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-password"><a class="link" href="#enhancement-added-password">Enhancement Added: Password</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-4-since-v1-5-setting-passwords-code-password-code"><a class="link" href="#since-v1-4-since-v1-5-setting-passwords-code-password-code">[Since v1.4][Since v1.5] Setting Passwords: <code>password</code></a></h3>
+<div class="paragraph">
+<p>Sets, removes or changes password required to use the application. Once a password is set, upon restarting humanDEX, the user will be required to
+enter the password in order to access humanDex. If the password is forgotten refer to the Developer Guide to rectify the problem.</p>
+</div>
+<div class="paragraph">
+<p>Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add: <code>password pwd/PASSWORD</code></p>
+</li>
+<li>
+<p>Remove: <code>password pwd/PASSWORD clearPwd/</code></p>
+</li>
+<li>
+<p>Change: <code>password pwd/PASSWORD new/NEW_PASSWORD</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>With password, the data stored in humanDEX will not be accessed easily.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="passwords"><a class="link" href="#passwords">Passwords</a></h3>
+<div class="paragraph">
+<p>As of v1.5, passwords can be of any string. This feature will be improved to check for stronger passwords. Until a
+better way of recovering passwords are found, the password will exist as a non-hidden file. Currently this password
+feature is a proof of concept on how the look and feel of the password command should be.</p>
+</div>
+<div class="paragraph">
+<p>The modes of this command is decided by the existence of the prefixes. Only the <code>pwd/</code> prefix is mandatory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set requires: <code>pwd/</code> prefix.</p>
+</li>
+<li>
+<p>Remove requires: <code>pwd/</code> and <code>clearPwd/</code> prefix.</p>
+</li>
+<li>
+<p>Change requires: <code>pwd/</code> and <code>new/</code> prefix.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="password-recovery"><a class="link" href="#password-recovery">Password Recovery</a></h4>
+<div class="paragraph">
+<p>As of v1.5, no password recovery is supported. If the password is forgotten during development, go to the data folder
+and delete the <code>pass</code> file and restart humanDex.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="improvements-2"><a class="link" href="#improvements-2">Improvements</a></h4>
+<div class="paragraph">
+<p>To make the password more effective at keeping the data secure, the addressbook.xml should be encrypted too. As no matter how
+secure the password is, it is redundant if the data can be freely accessed in the xml. Then upon completion of this task
+ the password can then be saved with the data, therefore making it more difficult to access the password.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-br"><a class="link" href="#implementation-br">Implementation<br></a></h4>
+<div class="paragraph">
+<p>Pseudo-codes for how the application reacts if there is a password.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PersonListPanel, LogicManager and ResultDisplay checks if password exists. If it does, go into locked mode else, operate as usual.</p>
+</li>
+<li>
+<p>Locked mode</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Result Display will prompt user to enter the password</p>
+</li>
+<li>
+<p>LogicManager will assume any text in the CommandBox is the password</p>
+</li>
+<li>
+<p>If password entered is correct, a PasswordAcceptedEvent will be posted and PersonListPanel and LogicManager will resume operating in their normal mode.</p>
+</li>
+<li>
+<p>If password entered is incorrect, just prompt the user to enter the password again.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Structure of command</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice):</strong> Use a single command with multiple modes.<br>
+<strong>Pros:</strong> Easier to program.<br>
+<strong>Cons:</strong> Multiple 3 subclasses in CommandPassword<br>
+<strong>Alternative 2:</strong> Different Commands for different modes. <br>
+<strong>Pros:</strong> More distinct differentiation various modes<br>
+<strong>Cons:</strong> Time comsuming and user needs to remember multiple commands.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="improvements-3"><a class="link" href="#improvements-3">Improvements</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Password storage</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the <code>data/pass</code> file to be hidden.</p>
+</li>
+<li>
+<p>Store the password in database.xml as an encrypted string.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Security</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Encrypt the database.xml so that passwords will not be redundant.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed"><a class="link" href="#enhancement-proposed">Enhancement Proposed:</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Touched up Gui(Pull requests <a href="https://github.com/CS2103AUG2017-F11-B1/main/pull/86">#86</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-13 07:46:28 +00:00
+</div>
+</div>
+</body>
+</html>

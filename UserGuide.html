@@ -5,20 +5,20 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>AddressBook Level 4 - User Guide</title>
+<title>humanDEX - User Guide</title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>AddressBook Level 4 - User Guide</h1>
+<h1>humanDEX - User Guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team CS2103AUG2017-F11-B1</code>      Since: <code>Sep 2017</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -29,21 +29,30 @@
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></li>
 <li><a href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">2.8. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">2.9. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.10. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.11. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.12. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.13. Saving the data</a></li>
+<li><a href="#since-v1-3-listing-all-persons-code-list-code">2.3. [Since v1.3] Listing all persons : <code>list</code></a></li>
+<li><a href="#since-v1-3-since-v1-4-sorts-and-lists-all-persons-using-fields-code-sort-code">2.4. [Since v1.3] [Since v1.4] Sorts and lists all persons using fields : <code>sort</code></a></li>
+<li><a href="#editing-a-person-code-edit-code">2.5. Editing a person : <code>edit</code></a></li>
+<li><a href="#since-v1-2-locating-persons-by-other-fields-code-find-code">2.6. [Since v1.2] Locating persons by other fields: <code>find</code></a></li>
+<li><a href="#deleting-a-person-code-delete-code">2.7. Deleting a person : <code>delete</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">2.8. Selecting a person : <code>select</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">2.9. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">2.10. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.11. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">2.12. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#since-v1-4-since-v1-5-setting-passwords-code-password-code">2.13. [Since v1.4][Since v1.5] Setting Passwords: <code>password</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.14. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.15. Saving the data</a></li>
 </ul>
 </li>
-<li><a href="#faq">3. FAQ</a></li>
-<li><a href="#command-summary">4. Command Summary</a></li>
+<li><a href="#features-v2-0">3. Features v2.0</a>
+<ul class="sectlevel2">
+<li><a href="#coming-in-v2-0-creating-a-new-humandex-code-new_humandex-code">3.1. [Coming in v2.0] Creating a new humanDEX : <code>new_humanDEX</code></a></li>
+<li><a href="#coming-in-v2-0-switching-to-another-humandex-code-switch-code">3.2. [Coming in v2.0] Switching to another humanDEX : <code>switch</code></a></li>
+<li><a href="#coming-in-v2-0-listing-the-edit-history-of-a-contact-code-edit_history-code">3.3. [Coming in v2.0] Listing the edit history of a contact : <code>edit_history</code></a></li>
+</ul>
+</li>
+<li><a href="#faq">4. FAQ</a></li>
+<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -69,7 +78,7 @@ This app will not work with earlier versions of Java 8.
 </div>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
+<p>Download the latest <code>humanDEX.jar</code> <a href="https://github.com/CS2103AUG2017-F11-B1/main/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
@@ -91,10 +100,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
+<p><strong><code>list</code></strong>*<code>all</code> : lists all contacts</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/Savings</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
@@ -148,7 +157,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>add n/NAME  g/GROUP [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203; [c/CUSTOMFIEILD_KEY:CUSTOMFIELD_VALUE]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -157,7 +166,19 @@ Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;<
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A person can have any number of tags (including 0)
+A person can have any number of tags or custom fields (including 0)
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can be saved with just name and group
 </td>
 </tr>
 </table>
@@ -168,26 +189,119 @@ A person can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/Health c/School:NUS c/Company:Google</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 g/Life t/criminal</code></p>
+</li>
+<li>
+<p><code>add n/Henry Harry g/Savings</code></p>
+</li>
+<li>
+<p><code>add n/Tim Tom p/12356923 a/Timmy street g/Holiday</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></h3>
+<h3 id="since-v1-3-listing-all-persons-code-list-code"><a class="link" href="#since-v1-3-listing-all-persons-code-list-code">2.3. [Since v1.3] Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>list all, shows all person in humanDEX<br>
+list tags, shows all tags in humanDEX<br>
+list groups, shows all groups in humanDEX<br>
+Format: <code>list [SEARCH_TERM]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list all</code></p>
+</li>
+<li>
+<p><code>list tags</code></p>
+</li>
+<li>
+<p><code>list groups</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></h3>
+<h3 id="since-v1-3-since-v1-4-sorts-and-lists-all-persons-using-fields-code-sort-code"><a class="link" href="#since-v1-3-since-v1-4-sorts-and-lists-all-persons-using-fields-code-sort-code">2.4. [Since v1.3] [Since v1.4] Sorts and lists all persons using fields : <code>sort</code></a></h3>
+<div class="paragraph">
+<p>Sorts the most recent persons listing by the given parameter in lexicographic order.<br>
+Format: <code>sort [prefix]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+prefix includes [n/] [p/] [e/] [a/] [g/]
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Sorts list based on one given parameter from: Name, Phone, Email, Address, or Group.</p>
+</li>
+<li>
+<p>If no parameter is given, sorts list by the contacts' names in alphabetical order.</p>
+</li>
+<li>
+<p>Cannot sort using multiple parameters.</p>
+</li>
+<li>
+<p>Cannot sort an empty contact list.</p>
+</li>
+<li>
+<p>A sorted contacts list can be unsorted by using the command <code>undo</code>.</p>
+</li>
+<li>
+<p>Sort can also be done by using the filter dropdown above the persons list, as follows:</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort-filter-controls.png" alt="sort filter controls" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort p/</code>
+Sorts the most recent persons listing by phone number.</p>
+</li>
+<li>
+<p><code>find a/jurong</code> + <code>sort</code>
+Finds all people with address containing 'jurong' and sorts by name.</p>
+</li>
+<li>
+<p><code>sort</code>, <code>sort n/</code>
+Sorts the most recent persons listing by name.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.5. Editing a person : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [-t/TAG]&#8230;&#8203; [+t/TAG]&#8230;&#8203; [clearTag/] [c/CUSTOMFIEILD_KEY:CUSTOMFIELD_VALUE]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -203,10 +317,13 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+<p>When editing custom fields, the existing custom fields of the person will be removed i.e adding of custom fields is not cumulative.</p>
 </li>
 <li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p>You can remove all the person&#8217;s custom fields by typing <code>c/</code> without specifying any custom fields after it.</p>
+</li>
+<li>
+<p>When editing tags, <code>clearTag/</code> takes precedence followed by <code>+t/</code> and then <code>-t/</code>.</p>
 </li>
 </ul>
 </div>
@@ -222,36 +339,46 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
+<p><code>edit 2 n/Betsy Crower clearTag/</code><br>
 Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+<li>
+<p><code>edit 3 c/School:NUS</code><br>
+Clears all existing custom fields and adds the custom field <code>School:NUS</code>.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></h3>
+<h3 id="since-v1-2-locating-persons-by-other-fields-code-find-code"><a class="link" href="#since-v1-2-locating-persons-by-other-fields-code-find-code">2.6. [Since v1.2] Locating persons by other fields: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+<p>Finds persons whose field matches any of the given fields.
+Format: <code>find prefix/INPUT [n/NAME]&#8230;&#8203; [p/PHONE]&#8230;&#8203; [e/EMAIL]&#8230;&#8203; [a/ADDRESS]&#8230;&#8203; [g/GROUP]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case insensitive. e.g <code>Email@Email.com</code> will match <code>email@email.com</code></p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+<p>Any field will be searched.</p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>The order of the keywords does not matter. e.g. <code>find n\Hans n\Bo</code> will match <code>find n\Bo n\Hans</code></p>
 </li>
 <li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>For name, phone, and address, partial words will also be matched.
+e.g. <code>find p/9004</code> will match anyone whose phone number contains <code>9004</code>.</p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>For phone and email, the given input must also be in the correct form of the corresponding field.
+e.g. <code>find e/gmail</code> is invalid. <code>find e_lee@nus.edu.sg</code> is valid.
+e.g. <code>find p/9</code> is invalid. Use the <code>sort</code> command instead if you want to categorize contacts by the starting digit of a phone number.</p>
+</li>
+<li>
+<p>Persons matching at least one field will be returned (i.e. <code>OR</code> search).</p>
 </li>
 </ul>
 </div>
@@ -263,18 +390,22 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
+<p><code>find n/John</code><br>
+Returns <code>Johnathan Kim</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>find t/colleagues t/friends</code><br>
+Returns any person who has a <code>colleague</code> tag or a <code>friends</code> tag.</p>
+</li>
+<li>
+<p><code>find t/shopkeeper g/Retail</code>
+Returns any persons who has the <code>shopkeeper</code> tag or is in the <code>Retail</code> group.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></h3>
+<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.7. Deleting a person : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
@@ -302,12 +433,12 @@ Format: <code>delete INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
+<p><code>list all</code><br>
 <code>delete 2</code><br>
 Deletes the 2nd person in the address book.</p>
 </li>
 <li>
-<p><code>find Betsy</code><br>
+<p><code>find n/Betsy</code><br>
 <code>delete 1</code><br>
 Deletes the 1st person in the results of the <code>find</code> command.</p>
 </li>
@@ -315,7 +446,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></h3>
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.8. Selecting a person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select INDEX</code></p>
@@ -343,12 +474,12 @@ Format: <code>select INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
+<p><code>list all</code><br>
 <code>select 2</code><br>
 Selects the 2nd person in the address book.</p>
 </li>
 <li>
-<p><code>find Betsy</code><br>
+<p><code>find n/Betsy</code><br>
 <code>select 1</code><br>
 Selects the 1st person in the results of the <code>find</code> command.</p>
 </li>
@@ -356,7 +487,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.8. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.9. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -377,7 +508,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.9. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.10. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -390,7 +521,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code>, <code>clear</code>, <code>find</code> and <code>sort</code>).</p>
 </div>
 </td>
 </tr>
@@ -403,12 +534,12 @@ Format: <code>undo</code></p>
 <ul>
 <li>
 <p><code>delete 1</code><br>
-<code>list</code><br>
+<code>list all</code><br>
 <code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
 </li>
 <li>
 <p><code>select 1</code><br>
-<code>list</code><br>
+<code>list all</code><br>
 <code>undo</code><br>
 The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
 </li>
@@ -422,7 +553,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.10. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.11. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -454,21 +585,44 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.11. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.12. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.12. Exiting the program : <code>exit</code></a></h3>
+<h3 id="since-v1-4-since-v1-5-setting-passwords-code-password-code"><a class="link" href="#since-v1-4-since-v1-5-setting-passwords-code-password-code">2.13. [Since v1.4][Since v1.5] Setting Passwords: <code>password</code></a></h3>
+<div class="paragraph">
+<p>Sets, removes or changes password required to use the application. Once a password is set, upon restarting humanDEX, the user will be required to
+enter the password in order to access humanDex. If the password is forgotten refer to the Developer Guide to rectify the problem.</p>
+</div>
+<div class="paragraph">
+<p>Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add: <code>password pwd/PASSWORD</code></p>
+</li>
+<li>
+<p>Remove: <code>password pwd/PASSWORD clearPwd/</code></p>
+</li>
+<li>
+<p>Change: <code>password pwd/PASSWORD new/NEW_PASSWORD</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.14. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.13. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.15. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -477,7 +631,68 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">3. FAQ</a></h2>
+<h2 id="features-v2-0"><a class="link" href="#features-v2-0">3. Features v2.0</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="coming-in-v2-0-creating-a-new-humandex-code-new_humandex-code"><a class="link" href="#coming-in-v2-0-creating-a-new-humandex-code-new_humandex-code">3.1. [Coming in v2.0] Creating a new humanDEX : <code>new_humanDEX</code></a></h3>
+<div class="paragraph">
+<p>Creates a new humanDEX.
+Format: <code>new_humanDEX NAME</code></p>
+</div>
+<hr>
+<div class="ulist">
+<ul>
+<li>
+<p>If you do not specify the name, the default name will be set to <code>humanDEX_#</code></p>
+</li>
+<li>
+<p>You can perform all commands in any humanDEX.</p>
+</li>
+<li>
+<p>Modifying a contact in one humanDEX will be reflected in all other humanDEXes.
+<strong>*</strong></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="coming-in-v2-0-switching-to-another-humandex-code-switch-code"><a class="link" href="#coming-in-v2-0-switching-to-another-humandex-code-switch-code">3.2. [Coming in v2.0] Switching to another humanDEX : <code>switch</code></a></h3>
+<div class="paragraph">
+<p>Switches to another humanDEX.
+Format: <code>switch NAME</code></p>
+</div>
+<hr>
+<div class="ulist">
+<ul>
+<li>
+<p>A new humanDEX interface will popup.
+<strong>*</strong></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="coming-in-v2-0-listing-the-edit-history-of-a-contact-code-edit_history-code"><a class="link" href="#coming-in-v2-0-listing-the-edit-history-of-a-contact-code-edit_history-code">3.3. [Coming in v2.0] Listing the edit history of a contact : <code>edit_history</code></a></h3>
+<div class="paragraph">
+<p>Lists all edit history of the person, identified by the index number used in the last person listing, in reverse chronological order.<br>
+Format: <code>edit_history INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/12341234</code><br>
+<code>edit_history 1</code> (prints: <code>phone number changed from <strong><strong></strong></strong>** to 12341234</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -486,13 +701,13 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">4. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
+<p><strong>Add</strong> <code>add n/NAME g/GROUP [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [t/TAG] [c/CUSTOMFIEILD_KEY:CUSTOMFIELD_VALUE]</code><br>
+e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/School:NUS g/Savings</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -502,15 +717,26 @@ e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [-t/TAG]&#8230;&#8203; [+t/TAG]&#8230;&#8203; [clearTag/] [g/GROUP]</code><br>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find James Jake</code></p>
+<p><strong>Find by field</strong> : <code>find [n/NAME]&#8230;&#8203; [p/PHONE]&#8230;&#8203; [e/EMAIL]&#8230;&#8203; [a/ADDRESS]&#8230;&#8203; [t/TAG]&#8230;&#8203; [g/GROUP]&#8230;&#8203;</code><br>
+e.g. <code>find p/99991234</code>
+e.g. <code>find t/colleagues t/clients g/Savings</code></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list</code></p>
+<p><strong>List</strong> : <code>list [SEARCH_TERM]</code>
+e.g. <code>list tags</code>
+e.g. <code>list groups</code>
+e.g. <code>list all</code></p>
+</li>
+<li>
+<p><strong>Sort (by name)</strong> : <code>sort</code></p>
+</li>
+<li>
+<p><strong>Sort</strong> : <code>sort [n/] [p/] [e/] [a/] [t/]</code><br>
+e.g. <code>sort n/ a/</code></p>
 </li>
 <li>
 <p><strong>Help</strong> : <code>help</code></p>
@@ -528,6 +754,22 @@ e.g.<code>select 2</code></p>
 <li>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
+<li>
+<p><strong>Password Management</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add: <code>password pwd/PASSWORD</code></p>
+</li>
+<li>
+<p>Remove: <code>password pwd/PASSWORD clearPwd/</code></p>
+</li>
+<li>
+<p>Change: <code>password pwd/PASSWORD new/NEW_PASSWORD</code></p>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 </div>
@@ -535,7 +777,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-21 15:57:58 +00:00
+Last updated 2017-11-13 07:46:28 +00:00
 </div>
 </div>
 </body>
