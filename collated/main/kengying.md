@@ -114,40 +114,6 @@ public class ListTagCommand extends ListCommand {
         return commandWord.substring(0, 1).toLowerCase() + commandWord.substring(1);
     }
 ```
-###### \java\seedu\address\logic\parser\FindCommandParser.java
-``` java
-    /**
-     * Parses {@code List<String> group} into a {@code List<Group>} if {@code group} is non-empty.
-     * If {@code group} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<Group>} containing zero groups.
-     */
-    private Optional<List<Group>> parseGroupForSearch(List<String> group) throws IllegalValueException {
-        assert group != null;
-
-        if (group.isEmpty()) {
-            return Optional.empty();
-        }
-        List<String> groupList = group.size() == 1 && group.contains("")
-                ? Collections.emptyList() : group;
-        return Optional.of(ParserUtil.parseGroup(groupList));
-    }
-
-    /**
-     * Parses {@code List<String> tags} into a {@code List<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<String>} containing zero tags.
-     */
-    private Optional<List<String>> parseTagForSearch(List<String> tags) throws IllegalValueException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        List<String> tagList = tags.size() == 1 && tags.contains("")
-                ? Collections.emptyList() : tags;
-        return Optional.of(tagList);
-    }
-```
 ###### \java\seedu\address\logic\parser\ListCommandParser.java
 ``` java
 /**
@@ -442,45 +408,6 @@ public class UniqueGroupList implements Iterable<Group> {
     }
 
 }
-```
-###### \java\seedu\address\model\ModelManager.java
-``` java
-    @Override
-    public List<Tag> getTagList() {
-        List<Tag> listTagsWithDuplicates = new ArrayList<>();
-
-        filteredPersons.forEach(persons -> listTagsWithDuplicates.addAll(persons.getTags()));
-
-        List<Tag> listTags = listTagsWithDuplicates.stream()
-                .distinct()
-                .collect(Collectors.toList());
-
-        listTags.sort(Comparator.comparing(Tag::toString));
-
-
-        return listTags;
-    }
-
-    @Override
-    public List<Group> getGroupList() {
-        ObservableList<ReadOnlyPerson> personList = addressBook.getPersonList();
-        List<Group> listGroupWithDuplicates = new ArrayList<>();
-        for (int i = 0; i < personList.size(); i++) {
-            ReadOnlyPerson currReadOnlyPerson = personList.get(i);
-
-            Person newPerson = new Person(currReadOnlyPerson);
-            listGroupWithDuplicates.add(newPerson.getGroup());
-        }
-
-        List<Group> listGroups = listGroupWithDuplicates.stream()
-                .distinct()
-                .collect(Collectors.toList());
-
-        listGroups.sort(Comparator.comparing(Group::toString));
-
-
-        return listGroups;
-    }
 ```
 ###### \java\seedu\address\storage\XmlAdaptedGroup.java
 ``` java
